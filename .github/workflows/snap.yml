@@ -39,6 +39,7 @@ jobs:
   publish:
     needs: build
     strategy:
+      fail-fast: false
       max-parallel: 1
       matrix:
         arch: [amd64, arm64]
