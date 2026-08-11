@@ -3,7 +3,6 @@ import sys
 
 from . import display
 from .quotes import today_quote
-from .setup import ensure_shell_integration
 from .shell import SCRIPTS
 
 
@@ -40,9 +39,6 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "reset":
         display.reset()
     else:
-        message = ensure_shell_integration()
-        if message:
-            print(message, file=sys.stderr)
         print(today_quote())
 
     return 0

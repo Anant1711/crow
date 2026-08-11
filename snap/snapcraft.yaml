@@ -31,20 +31,9 @@ platforms:
     build-on: [arm64]
     build-for: [arm64]
 
-plugs:
-  dot-bashrc:
-    interface: personal-files
-    write: [$HOME/.bashrc]
-  dot-zshrc:
-    interface: personal-files
-    write: [$HOME/.zshrc]
-
 apps:
   crow:
     command: bin/crow
-    plugs:
-      - dot-bashrc
-      - dot-zshrc
 
 parts:
   crow:
