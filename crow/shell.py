@@ -11,6 +11,14 @@ esac
 
 trap '__crow_precmd' WINCH
 trap 'crow reset' EXIT
+
+crow_off() {
+  PROMPT_COMMAND="${PROMPT_COMMAND//__crow_precmd;/}"
+  PROMPT_COMMAND="${PROMPT_COMMAND//__crow_precmd/}"
+  trap - WINCH
+  trap - EXIT
+  crow reset
+}
 """
 
 ZSH_INIT = """\
@@ -30,6 +38,13 @@ add-zsh-hook zshexit __crow_on_exit
 
 TRAPWINCH() {
   crow show
+}
+
+crow_off() {
+  add-zsh-hook -d precmd __crow_precmd
+  add-zsh-hook -d zshexit __crow_on_exit
+  unfunction TRAPWINCH 2>/dev/null
+  crow reset
 }
 """
 
