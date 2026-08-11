@@ -38,15 +38,22 @@ jobs:
 
   publish:
     needs: build
+    strategy:
+      max-parallel: 1
+      matrix:
+        arch: [amd64, arm64]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
         with:
+          name: crow-${{ matrix.arch }}
           path: snaps
-          merge-multiple: true
+      - name: Resolve snap file path
+        id: find
+        run: echo "path=$(ls snaps/*.snap)" >> "$GITHUB_OUTPUT"
       - uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
         with:
-          snap: snaps/*.snap
+          snap: ${{ steps.find.outputs.path }}
           release: ${{ inputs.release || 'edge' }}
