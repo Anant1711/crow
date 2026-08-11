@@ -1,0 +1,27 @@
+name: crow
+version: '0.1.0'
+summary: A daily quote, pinned to the bottom line of your terminal
+description: |
+  crow keeps a short, rotating, programmer-flavored quote pinned to the
+  bottom line of your terminal while you work — through commands, output,
+  and resizes — without touching your scrollback.
+
+  Add one line to your shell rc file to turn it on:
+
+    eval "$(crow init bash)"   # or: eval "$(crow init zsh)"
+
+  Quotes are bundled with the snap and picked deterministically per day,
+  so crow works fully offline with no network access.
+
+base: core24
+confinement: strict
+grade: stable
+
+apps:
+  crow:
+    command: bin/crow
+
+parts:
+  crow:
+    plugin: python
+    source: .
