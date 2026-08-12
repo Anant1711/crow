@@ -52,6 +52,16 @@ If you just want today's quote printed once, with no terminal trickery:
 $ crow today
 ```
 
+Not feeling today's quote? Swap it for a different one:
+
+```
+$ crow next
+```
+
+The new quote replaces today's pick everywhere — the pinned line updates
+immediately, and `crow today`/every other terminal's line will show it too
+until the day rolls over.
+
 ## How it works
 
 `crow show` uses ANSI escape codes to shrink the terminal's scrolling

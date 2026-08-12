@@ -3,7 +3,7 @@ import os
 import sys
 
 from . import display
-from .quotes import today_quote
+from .quotes import shuffle_quote, today_quote
 from .shell import SCRIPTS, detect_shell, install
 
 
@@ -15,6 +15,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command")
 
     sub.add_parser("today", help="print today's quote and exit")
+    sub.add_parser("next", help="swap in a different quote for the rest of today")
 
     init_p = sub.add_parser(
         "init", help="print shell integration script (eval it in your rc file)"
@@ -68,6 +69,10 @@ def main(argv: list[str] | None = None) -> int:
                 file=sys.stderr,
             )
             return 1
+    elif args.command == "next":
+        quote = shuffle_quote()
+        print(quote)
+        display.show(quote)
     elif args.command == "show":
         display.show(today_quote())
     elif args.command == "reset":
