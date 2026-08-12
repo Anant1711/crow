@@ -21,7 +21,16 @@ snap install crow
 
 ## Usage
 
-Add one line to your shell rc file:
+```
+$ crow setup
+```
+
+This detects your shell and appends the integration line to `~/.bashrc` or
+`~/.zshrc`. Open a new terminal and the quote appears on the bottom line,
+refreshing after every command and on resize. It's cleared automatically
+when the shell exits.
+
+If you'd rather do it by hand, `crow setup` just automates this:
 
 ```bash
 # ~/.bashrc
@@ -33,9 +42,9 @@ eval "$(crow init bash)"
 eval "$(crow init zsh)"
 ```
 
-Open a new terminal and the quote appears on the bottom line, refreshing
-after every command and on resize. It's cleared automatically when the
-shell exits.
+Note that `eval`-ing this directly in a running terminal only wires up
+*that* shell, not new ones — the shell rc file is what makes it apply
+everywhere.
 
 If you just want today's quote printed once, with no terminal trickery:
 
