@@ -1,4 +1,5 @@
 # crow
+[![crow](https://snapcraft.io/crow/badge.svg)](https://snapcraft.io/crow)
 
 A daily quote, pinned to the bottom line of your terminal.
 
