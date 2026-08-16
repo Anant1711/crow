@@ -11,7 +11,7 @@ resizes — without touching your scrollback. The quote changes once a day.
 $ ls
 Cargo.toml  src/  target/
 ────────────────────────────────────────────────────────────
-git blame is just archaeology with extra steps.
+The deploy that goes out at 4:59pm on a Friday is a decision, not an accident.
 ```
 
 ## Install
